@@ -29,5 +29,5 @@ doc = json.dumps({
         'username': 'orikik',
         'password': '1234'
     })
-
-User.new_user(doc)
+for men in mongo.collection.find():
+    print(men)
