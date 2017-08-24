@@ -1,11 +1,5 @@
 import json
-import pymongo
-from pymongo import MongoClient
-
-
-client = MongoClient('localhost', 27017)
-db = client.sampleDB
-collection = db.dataset
+import mongo
 
 class User:
     def __init__(self):
@@ -13,29 +7,27 @@ class User:
 
     def new_user(self):
         data = json.loads(doc)
-        login = data['name']
-        if collection.find({"name": login}).count() > 0:
+        login = data['username']
+        if mongo.collection.find({"username": login}).count() > 0:
             print('this account active, choose another login')
-            for men in collection.find():
+            for men in mongo.collection.find():
                 print(men)
         else:
-            collection.save(data)
-            for men in collection.find():
+            mongo.collection.save(data)
+            for men in mongo.collection.find():
                 print(men)
 
     def remove_user(self):
         data = json.loads(doc)
-        login = data['name']
-        if collection.find({"name": login}).count() > 0:
-            collection.remove(data)
-            for men in collection.find():
+        login = data['username']
+        if mongo.collection.find({"username": login}).count() > 0:
+            mongo.collection.remove(data)
+            for men in mongo.collection.find():
                 print(men)
 
 doc = json.dumps({
-        'name': 'orikik',
+        'username': 'orikik',
         'password': '1234'
     })
-
-User.new_user(doc)
 
 User.new_user(doc)
