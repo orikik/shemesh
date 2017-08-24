@@ -3,6 +3,15 @@ from app import app
 import mongo
 import uuid
 
+"""
+@api {get} /logout User logout
+
+@apiName LogoutUser
+@apiGroup User
+
+@apiParam {String} cookie Users cookie
+"""
+
 
 @app.route('/logout', methods=['GET', 'POST'])
 def logout():

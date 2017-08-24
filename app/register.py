@@ -3,14 +3,17 @@ from app import app
 import mongo
 
 """
-@api {get} /register sfsf sfsdf sdf sf 
+@api {post, get} /register New User Registration
+
 @apiName GetUser
 @apiGroup User
 
-@apiParam {Number} id Users unique ID.
+@apiParam {Number} id Users unique ID
+@apiParam {String} username Users name
+@apiParam {String} password Users password
 
-@apiSuccess {String} firstname Firstname of the User.
-@apiSuccess {String} lastname  Lastname of the User.
+@apiSuccess {String} username Users name
+@apiSuccess {String} password Users password
 """
 @app.route('/register', methods=['GET', 'POST'])
 def register():
