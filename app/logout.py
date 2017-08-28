@@ -1,7 +1,7 @@
 from flask import request, make_response
 from app import app
 import mongo
-import uuid
+
 
 """
 @api {get} /logout User logout

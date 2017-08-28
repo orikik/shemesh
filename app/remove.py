@@ -20,9 +20,10 @@ import mongo
 @app.route('/remove', methods=['GET', 'POST'])
 def remove():
     """Deleting a user."""
-    username = request.get_json()
-    if mongo.collection.find({"username": username['username']}).count() > 0:
-        mongo.collection.remove(username)
+    user = request.get_json()
+    session = request.cookies.get('session')
+    if mongo.collection.find_one({"username": user['username'], "password": user['password']}):
+        mongo.collection.remove(user)
         return 'The user was deleted.'
     else:
         return 'User with such login does not exist.'

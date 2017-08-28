@@ -31,3 +31,10 @@ doc = json.dumps({
     })
 for men in mongo.collection.find():
     print(men)
+
+print('end \nstart')
+
+for men in mongo.file_collection.find():
+    print(men)
+
+

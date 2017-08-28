@@ -6,4 +6,6 @@ from app import login
 from app import register
 from app import remove
 from app import logout
+from app import update
+
 
