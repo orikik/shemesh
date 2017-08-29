@@ -3,7 +3,7 @@ from app import app
 import mongo
 
 """
-@api {post, get} /register New User Registration
+@api {post} /register New User Registration
 
 @apiName GetUser
 @apiGroup User
@@ -17,7 +17,7 @@ import mongo
 """
 
 
-@app.route('/register', methods=['GET', 'POST'])
+@app.route('/register', methods=['POST'])
 def register():
     """Registers the user."""
     user = request.get_json()

@@ -13,10 +13,10 @@ import mongo
 """
 
 
-@app.route('/logout', methods=['GET', 'POST'])
-def logout():
+@app.route('/logout', methods=['POST'])
+def logout_get():
     session = request.cookies.get('session')
-    mongo.collection.update({'session': session}, {'$unset': {'session': 1}})
+    mongo.collection.update_one({'session': session}, {'$unset': {'session': 1}})
     resp = make_response("logout")
     resp.set_cookie('session', expires=0)
     return resp

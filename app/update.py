@@ -19,9 +19,9 @@ import uuid
 """
 
 
-@app.route('/update', methods=['GET', 'POST'])
+@app.route('/update', methods=['POST'])
 def update():
-    """df"""
+    """update"""
     session = request.cookies.get('session')
     user = request.get_json()
     if mongo.collection.find_one({"session": session}):
@@ -29,8 +29,8 @@ def update():
             mongo.collection.update({'session': session}, {'$set': {"username": user['username']}})
             mongo.collection.update({'session': session}, {'$set': {"password": user['password']}})
             return 'New login: ' + user['username'] + ', ' +\
-               'New password: ' + user['password']
+                   'New password: ' + user['password']
         else:
             return 'Login is used.'
     else:
-        return 'You are not login.'
+        return 'You are not loged in.'
