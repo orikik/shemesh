@@ -1,4 +1,4 @@
-from flask import request
+from flask import request, make_response
 from app import app
 import mongo
 
@@ -34,6 +34,8 @@ def remove_get():
     session = request.cookies.get('session')
     if mongo.collection.find_one({'session': session}):
         mongo.collection.remove({'session': session})
+        resp = make_response("remove")
+        resp.set_cookie('session', expires=0)
         return 'The user was deleted.'
     else:
         return 'You are not authorisate.'

@@ -2,9 +2,9 @@ import json
 from tests import params
 import requests
 from flask import request
-
 import mongo
 
+doc = 1
 class User:
     def __init__(self):
         pass
@@ -29,12 +29,6 @@ class User:
             for men in mongo.collection.find():
                 print(men)
 
-doc = json.dumps({
-        'username': 'orikik',
-        'password': '1234'
-    })
-
-
 for men in mongo.collection.find():
     print(men)
 
@@ -45,16 +39,26 @@ param = {
     'username': 'tes',
     'password': '1234'
 }
+param1 = {
+    'username': 'tests',
+    'password': '1256'
+}
+
+
+
 requests.post(url = mongo.api_url + "register" , json = param)
 y = requests.post(url = mongo.api_url + "login", json = param)
-for men in mongo.collection.find():
-    print(men)
-requests.get(url = mongo.api_url + "remove", params= y.cookies)
 
 for men in mongo.collection.find():
     print(men)
 
-if mongo.collection.find_one({"username": 'orik', "session" : {'$exists': False}}):
-    print('yes')
-else:
-    print('no')
+print('end \nstart')
+
+session = requests.Session()
+response = session.post(url = mongo.api_url + "login", json = param)
+c = response.cookies
+r = requests.get(url = mongo.api_url + "remove", cookies = c)
+
+
+for men in mongo.collection.find():
+    print(men)
