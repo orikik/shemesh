@@ -7,5 +7,6 @@ from app import register
 from app import remove
 from app import logout
 from app import update
+from app import directory_new
 
 

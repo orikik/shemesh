@@ -1,7 +1,8 @@
+import os
 from flask import request, make_response
 from app import app
 import mongo
-
+from new_user import User
 
 """
 @api {post, get} /remove User deletion
@@ -20,12 +21,17 @@ import mongo
 @app.route('/remove', methods=['POST'])
 def remove_post():
     """Deleting a user."""
-    user = request.get_json()
-    if mongo.collection.find_one({"username": user['username'], "password": user['password']}):
-        mongo.collection.remove(user)
-        return 'The user was deleted.'
+    data = request.get_json()
+    user = User().user(data)
+    if user:
+        if mongo.collection.find_one({"username": user['username'], "password": user['password']}):
+            mongo.collection.remove(user)
+            os.rmdir(path='C:/test_server/' + user['username'])
+            return 'The user was deleted.'
+        else:
+            return 'Wrong password or user with such login does not exist.'
     else:
-        return 'Wrong password or user with such login does not exist.'
+        return 'Incorrect data'
 
 
 @app.route('/remove', methods=['GET'])

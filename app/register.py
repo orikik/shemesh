@@ -1,6 +1,8 @@
+import os
 from flask import request
 from app import app
 import mongo
+from new_user import User
 
 """
 @api {post} /register New User Registration
@@ -20,13 +22,19 @@ import mongo
 @app.route('/register', methods=['POST'])
 def register():
     """Registers the user."""
-    user = request.get_json()
-    if not mongo.collection.find_one({"username": user['username']}):
-        mongo.collection.save(user)
-        print("Set-cookie: name=value")
-        print("Content-type: text/html\n")
-        return 'A new account has been created. ' + \
-               'Login: ' + user['username'] + ', ' +\
-               'Password: ' + user['password']
+    data = request.get_json()
+    user = User().params_user(data) #Validation of entered data
+    if user:
+        if not mongo.collection.find_one({"username": user['username']}):
+            mongo.collection.save(user)
+            os.mkdir(path='C:/test_server/' + user['username'])
+            print("Set-cookie: name=value")
+            print("Content-type: text/html\n")
+            return 'A new account has been created. ' + \
+                   'Login: ' + user['username'] + ', ' + \
+                   'Password: ' + user['password']
+        else:
+            return 'Login is used.'
     else:
-        return 'Login is used.'
+        return 'Incorrect data'
+

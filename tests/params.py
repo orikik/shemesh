@@ -1,3 +1,4 @@
+import os
 import requests
 
 import mongo
@@ -12,3 +13,5 @@ class Params:
     def registr(self):
         api_url = mongo.api_url + 'register'
         requests.post(url=api_url, json=self.user)
+
+print(os.getcwd())

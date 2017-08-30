@@ -2,7 +2,7 @@ from flask import request, make_response
 from app import app
 import mongo
 import uuid
-
+from new_user import User
 
 """
 @api {post, get} /login User login
@@ -19,16 +19,20 @@ import uuid
 """
 
 
-@app.route('/login', methods=['GET', 'POST'])
+@app.route('/login', methods=['POST'])
 def login():
     """log the user in."""
-    user = request.get_json()
-    if mongo.collection.find_one({"username": user['username'], "password": user['password']}):
-        resp = make_response('Login successful')
-        uuid_user = uuid.uuid4().hex
-        resp.set_cookie('session', uuid_user)
-        mongo.collection.update({'username': user['username']}, {"$set": {"session": uuid_user}})
+    data = request.get_json()
+    user = User().user(data)
+    if user:
+        if mongo.collection.find_one({"username": user['username'], "password": user['password']}):
+            resp = make_response('Login successful')
+            uuid_user = uuid.uuid4().hex
+            resp.set_cookie('session', uuid_user)
+            mongo.collection.update({'username': user['username']}, {"$set": {"session": uuid_user}})
 
-        return resp
+            return resp
+        else:
+            return make_response('Invalid username/password')
     else:
-        return make_response('Invalid username/password')
+        return 'Incorrect data'

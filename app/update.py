@@ -1,7 +1,7 @@
-from flask import request, make_response
+from flask import request
 from app import app
 import mongo
-import uuid
+from new_user import User
 
 
 """
@@ -23,14 +23,18 @@ import uuid
 def update():
     """update"""
     session = request.cookies.get('session')
-    user = request.get_json()
-    if mongo.collection.find_one({"session": session}):
-        if not mongo.collection.find_one({"username": user['username']}):
-            mongo.collection.update({'session': session}, {'$set': {"username": user['username']}})
-            mongo.collection.update({'session': session}, {'$set': {"password": user['password']}})
-            return 'New login: ' + user['username'] + ', ' +\
-                   'New password: ' + user['password']
+    data = request.get_json()
+    user = User().user(data)
+    if user:
+        if mongo.collection.find_one({"session": session}):
+            if not mongo.collection.find_one({"username": user['username']}):
+                mongo.collection.update({'session': session}, {'$set': {"username": user['username']}})
+                mongo.collection.update({'session': session}, {'$set': {"password": user['password']}})
+                return 'New login: ' + user['username'] + ', ' + \
+                       'New password: ' + user['password']
+            else:
+                return 'Login is used.'
         else:
-            return 'Login is used.'
+            return 'You are not loged in.'
     else:
-        return 'You are not loged in.'
+        return 'Incorrect data'
