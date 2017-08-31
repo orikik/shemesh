@@ -8,5 +8,6 @@ from app import remove
 from app import logout
 from app import update
 from app import directory_new
+from app import new_file
 
 

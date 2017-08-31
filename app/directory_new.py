@@ -27,4 +27,4 @@ def new_dir():
     data = request.get_json()
     n = User().find_username(session)
     os.mkdir(path='C:/test_server/' + n + '/' +data['path'])
-    return data['path'] + 'created'
+    return data['path'] + ' created.'
