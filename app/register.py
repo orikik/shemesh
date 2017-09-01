@@ -3,7 +3,7 @@ from flask import request
 from app import app
 import mongo
 from new_user import User
-
+from dev_choice import dev
 """
 @api {post} /register New User Registration
 
@@ -27,7 +27,7 @@ def register():
     if user:
         if not mongo.collection.find_one({"username": user['username']}):
             mongo.collection.save(user)
-            os.mkdir(path='C:/test_server/' + user['username'])
+            os.mkdir(path=dev().choose_device() + '/' + user['username'])
             print("Set-cookie: name=value")
             print("Content-type: text/html\n")
             return 'A new account has been created. ' + \

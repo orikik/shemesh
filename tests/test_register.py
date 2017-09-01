@@ -3,7 +3,6 @@ import requests
 import mongo
 
 
-
 class MyTestCase(unittest.TestCase):
     params = {
         'username': 'testing',
