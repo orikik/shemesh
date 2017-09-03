@@ -19,8 +19,8 @@ from new_user import User
 """
 
 
-@app.route('/new_dir', methods=['POST'])
-def new_dir():
+@app.route('/get_dir', methods=['POST'])
+def get_dir():
     """create new directory"""
     session = request.cookies.get('session')
     data = request.get_json()
@@ -28,9 +28,9 @@ def new_dir():
     key1 = 'path' in data
     key2 = 'name' in data
     if key1 and key2 and len(data) == 2:
-        f = Dir(username=username, path_to=data['path'], name=data['name']).new_directory()
+        f = Dir(username=username, path_to=data['path'], name=data['name']).getting_a_list_of_directory_files()
     elif key2 and len(data) == 1:
-        f = Dir(username=username, name=data['name']).new_directory()
+        f = Dir(username=username, name=data['name']).getting_a_list_of_directory_files()
     else:
         return 'Incorrect data'
     return f

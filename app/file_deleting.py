@@ -3,11 +3,10 @@ from flask import request
 from app import app
 from new_user import User
 
-
-@app.route('/upload', methods=['POST'])
-def upload():
+@app.route('/delete_file', methods=['POST'])
+def delete_file():
     data = request.get_json()
     session = request.cookies.get('session')
     username = User().find_username(session)
-    n = dev().user_path(data=data, username=username)
+    n = dev().remove_file(username=username, name=data['name'])
     return n

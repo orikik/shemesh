@@ -27,7 +27,6 @@ def register():
     if user:
         if not mongo.collection.find_one({"username": user['username']}):
             mongo.collection.save(user)
-            os.mkdir(path=dev().choose_device() + '/' + user['username'])
             print("Set-cookie: name=value")
             print("Content-type: text/html\n")
             return 'A new account has been created. ' + \

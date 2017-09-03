@@ -1,7 +1,6 @@
 import json
-
 import shutil
-
+import os
 import dev_choice
 import mongo
 
@@ -52,3 +51,6 @@ for men in mongo.file_collection.find():
     print(men)
 for men in mongo.dev_collection.find():
     print(men)
+for men in mongo.dir_collection.find():
+    print(men)
+os.removedirs('C:/dev_0/orik')

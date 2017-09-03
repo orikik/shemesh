@@ -3,6 +3,7 @@ import mongo
 mongo.collection.remove({})
 mongo.file_collection.remove({})
 mongo.dev_collection.remove({})
+mongo.dir_collection.remove({})
 
 
 dev_0 = {
