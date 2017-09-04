@@ -8,8 +8,10 @@ from app import register
 from app import remove
 from app import logout
 from app import update
-from app import new_file
+from app import file_upload
 from app import file_deleting
+from app import file_update
+from app import file_get
 from app import directory_new
 from app import directory_change_name
 from app import directory_remove

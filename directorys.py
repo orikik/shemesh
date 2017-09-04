@@ -1,7 +1,8 @@
 import os
 
 import mongo
-from dev_choice import dev
+from devicee.dev_choice import Dev
+
 
 class Dir:
     def __init__(self, username, name, path_to=''):
@@ -48,7 +49,7 @@ class Dir:
             n = self.getting_a_list_of_directory_files()
             if len(n) != 0:
                 for m in n:
-                    dev().remove_file(username=self.username, name=m, path_from=self.path_to)
+                    Dev().remove_file(username=self.username, name=m, storage_path=self.path_to)
                 for v in mongo.dev_collection.find():
                     path = v['path'] + '/' + self.similar['full path']
                     os.removedirs(path=path)

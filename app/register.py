@@ -1,9 +1,8 @@
-import os
 from flask import request
-from app import app
-import mongo
 from new_user import User
-from dev_choice import dev
+import mongo
+from app import app
+
 """
 @api {post} /register New User Registration
 
