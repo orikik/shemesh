@@ -1,8 +1,7 @@
+from device.correct_data import Correct
 from flask import request
-
 from app import app
-from devicee.correct_data import Correct
-from new_user import User
+from user.new_user import User
 
 
 @app.route('/delete_file', methods=['POST'])

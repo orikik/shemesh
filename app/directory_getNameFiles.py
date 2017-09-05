@@ -1,8 +1,7 @@
 from flask import request
 from app import app
-from directorys import Dir
-from new_user import User
-
+from director.correct import Correct
+from user.new_user import User
 
 """
 @api {post, get} /update User update
@@ -21,16 +20,9 @@ from new_user import User
 
 @app.route('/get_dir', methods=['POST'])
 def get_dir():
-    """create new directory"""
+    """get list files from directory"""
     session = request.cookies.get('session')
     data = request.get_json()
     username = User().find_username(session)
-    key1 = 'path' in data
-    key2 = 'name' in data
-    if key1 and key2 and len(data) == 2:
-        f = Dir(username=username, path_to=data['path'], name=data['name']).getting_a_list_of_directory_files()
-    elif key2 and len(data) == 1:
-        f = Dir(username=username, name=data['name']).getting_a_list_of_directory_files()
-    else:
-        return 'Incorrect data'
-    return f
+    n = Correct().get_list(data=data, username=username)
+    return n

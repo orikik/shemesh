@@ -1,4 +1,4 @@
-from devicee.dev_choice import Dev
+from device.dev_func import Dev
 
 
 class Correct:

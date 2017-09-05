@@ -1,6 +1,5 @@
 from flask import request
-from new_user import User
-import mongo
+from user.correct import Correct
 from app import app
 
 """
@@ -22,17 +21,6 @@ from app import app
 def register():
     """Registers the user."""
     data = request.get_json()
-    user = User().params_user(data) #Validation of entered data
-    if user:
-        if not mongo.collection.find_one({"username": user['username']}):
-            mongo.collection.save(user)
-            print("Set-cookie: name=value")
-            print("Content-type: text/html\n")
-            return 'A new account has been created. ' + \
-                   'Login: ' + user['username'] + ', ' + \
-                   'Password: ' + user['password']
-        else:
-            return 'Login is used.'
-    else:
-        return 'Incorrect data'
+    n = Correct().add(data)
+    return n
 

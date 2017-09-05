@@ -1,7 +1,7 @@
 from flask import request
 from app import app
-from directorys import Dir
-from new_user import User
+from user.new_user import User
+from director.correct import Correct
 
 
 """
@@ -25,12 +25,5 @@ def remove_dir():
     session = request.cookies.get('session')
     data = request.get_json()
     username = User().find_username(session)
-    key1 = 'path' in data
-    key2 = 'name' in data
-    if key1 and key2 and len(data) == 2:
-        f = Dir(username=username, path_to=data['path'], name=data['name']).remove_directory()
-    elif key2 and len(data) == 1:
-        f = Dir(username=username, name=data['name']).remove_directory()
-    else:
-        return 'Incorrect data'
-    return f
+    n = Correct().remove_dir(data=data, username=username)
+    return n

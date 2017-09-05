@@ -15,4 +15,4 @@ from app import file_get
 from app import directory_new
 from app import directory_change_name
 from app import directory_remove
-from app import directory_genNameFiles
+from app import directory_getNameFiles

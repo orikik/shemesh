@@ -1,16 +1,11 @@
 import os
-
-from devicee.device_manager import choose_device
-from devicee.exchange import Exchange
-from devicee.path_manager import create_path
-
-from devicee.DB_manager import DB
+from device.device_manager import choose_device
+from device.exchange import Exchange
+from device.path_manager import create_path
+from device.DB_manager import DB
 
 
 class Dev:
-    def __init__(self):
-        pass
-
     def add_file(self, username, user_path, storage_path=''):
         size = os.path.getsize(user_path)
         name = os.path.basename(user_path)
@@ -42,7 +37,7 @@ class Dev:
         path = '/' + username + '/' + storage_path
         file = DB().get_file(username=username, name=name, dir_path=path)
         if file:
-            os.remove(file['device']+file['path']+file['name'])
+            Exchange().remove_file(file['device'] + file['path'] + file['name'])
             DB().remove_file(file)
             size = file['size']
             DB().update_device(size=-size, dev_path=file['device'])

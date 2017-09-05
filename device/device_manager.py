@@ -1,5 +1,5 @@
 import mongo
-from devicee.DB_manager import DB
+from device.DB_manager import DB
 
 
 def choose_device():

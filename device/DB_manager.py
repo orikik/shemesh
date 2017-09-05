@@ -1,11 +1,15 @@
 import mongo
 
+
 class DB:
     def file_exist(self, username, dir_path, name):
         if mongo.file_collection.find_one({'username': username, 'path': dir_path, 'name': name}):
             return True
         else:
             return False
+
+    def all_dev(self):
+        return mongo.dev_collection.find()
 
     def get_file(self, username, dir_path, name):
         if self.file_exist(username, dir_path, name):
