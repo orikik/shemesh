@@ -24,6 +24,6 @@ def new_name_dir():
     """Change name directory"""
     session = request.cookies.get('session')
     data = request.get_json()
-    username = User().find_username(session)
+    username = str(User().find_username(session))
     n = Correct().change_name(data=data, username=username)
     return n

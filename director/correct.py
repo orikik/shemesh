@@ -34,7 +34,7 @@ class Correct:
             n = Dir(username=username, path_to=data['path'], name=data['old name']).change_name_directory(data['new name'])
             return n
         elif key1 and key2 and len(data) == 2:
-            n = Dir(username=username, name=data['name']).change_name_directory(data['new name'])
+            n = Dir(username=username, name=data['old name']).change_name_directory(data['new name'])
             return n
         else:
             return 'Incorrect data'

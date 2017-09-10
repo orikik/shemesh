@@ -23,6 +23,6 @@ def get_dir():
     """get list files from directory"""
     session = request.cookies.get('session')
     data = request.get_json()
-    username = User().find_username(session)
+    username = str(User().find_username(session))
     n = Correct().get_list(data=data, username=username)
     return n

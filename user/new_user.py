@@ -1,5 +1,6 @@
+import uuid
+from flask import make_response
 import mongo
-from user.cookie import get_cookie
 
 
 class User:
@@ -18,8 +19,11 @@ class User:
 
     def login_user(self, username, password):
         if mongo.collection.find_one({"username": username, "password": password}):
-            cookie = get_cookie(username=username)
-            return cookie
+            uuid_user = uuid.uuid4().hex
+            resp = make_response('Login successful')
+            resp.set_cookie('session', uuid_user)
+            User().update_user_cookie(username=username, cookie=uuid_user)
+            return resp
         else:
             return 'Invalid username/password'
 

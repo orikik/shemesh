@@ -24,6 +24,6 @@ def remove_dir():
     """create new directory"""
     session = request.cookies.get('session')
     data = request.get_json()
-    username = User().find_username(session)
+    username = str(User().find_username(session))
     n = Correct().remove_dir(data=data, username=username)
     return n
