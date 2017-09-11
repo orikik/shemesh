@@ -41,27 +41,27 @@ class Dir:
             return 'A directory named "' + self.name + '" does not exist.'
 
     def remove_directory(self):
+        dir = DB_dir().get_dir(username=self.username, name=self.name, full_path=self.full_path)
         if self.similar:
             n = self.getting_a_list_of_directory_files()
             if len(n) != 0:
                 for m in n:
                     Dev().remove_file(username=self.username, name=m, storage_path=self.path_to)
-                for v in DB().all_dev():
-                    path = v['path'] + '/' + self.similar['full path']
-                    remove_tree(path=path)
-            n = DB_dir().remove_dir(self.similar)
+                remove_tree(full_path=dir['full path'])
+            n = DB_dir().remove_dir(dir)
             return n
         else:
             return 'A directory named \"' + self.name + '\" does not exist.'
 
     def getting_a_list_of_directory_files(self):
         if self.similar:
-            d = []
-            n = DB_dir().find_files_in_dir(username=self.username, path=self.full_path, d=d)
+            n = DB_dir().find_files_in_dir(username=self.username, path=self.full_path)
             if len(n) == 0:
                 return 'Directory is empty.'
             else:
-                return d
+                n = '\n'.join(n)
+                return n
+
         else:
             return 'A directory named \"' + self.name + '\" does not exist.'
 

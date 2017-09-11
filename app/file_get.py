@@ -8,6 +8,6 @@ from user.new_user import User
 def file_get():
     data = request.get_json()
     session = request.cookies.get('session')
-    username = User().find_username(session)
+    username = str(User().find_username(session))
     n = Correct().get(data=data, username=username)
     return n

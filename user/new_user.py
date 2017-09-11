@@ -1,6 +1,8 @@
 import uuid
 from flask import make_response
 import mongo
+from device.DB_manager import DB
+from director.remove_tree_in_device import remove_tree
 
 
 class User:
@@ -54,13 +56,15 @@ class User:
             return False
 
     def remove_user(self, username, password):
-        #delete_all_user_files()
+        n = mongo.collection.find_one({'username': username})
+        self.remove_everything(id=str(n['_id']))
         mongo.collection.remove({"username": username, "password": password})
         return 'The user was deleted.'
 
     def remove_user2(self, session):
-        if mongo.collection.find_one({"session": session}):
-            # delete_all_user_files()
+        n = mongo.collection.find_one({"session": session})
+        if n:
+            self.remove_everything(id=str(n['_id']))
             mongo.collection.remove({"session": session})
             return 'The user was deleted.'
         else:
@@ -75,3 +79,10 @@ class User:
 
     def update_user_cookie(self, username, cookie):
         mongo.collection.update({'username': username}, {"$set": {"session": cookie}})
+
+    def remove_everything(self, id):
+        for men in mongo.file_collection.find({'username':id}):
+            DB().remove_file(men)
+        for men in mongo.dir_collection.find({'username':id}):
+            mongo.dir_collection.remove(men)
+        remove_tree(full_path=id)

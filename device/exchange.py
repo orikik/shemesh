@@ -11,3 +11,4 @@ class Exchange:
 
     def remove_file(self, path):
         os.remove(path)
+        #os.removedirs(path)
