@@ -22,6 +22,7 @@ class MyTestCase(unittest.TestCase):
         requests.post(url=mongo.api_url + "update", cookies=c, json=params)
         self.assertFalse(mongo.collection.find_one({"username": self.params['username'], "password": self.params['password']}))
         self.assertTrue(mongo.collection.find_one({"username": params['username'], "password": params['password']}))
+        requests.post(url=mongo.api_url + 'remove', json=params)
 
 
 if __name__ == '__main__':

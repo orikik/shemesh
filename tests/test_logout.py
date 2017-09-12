@@ -17,7 +17,7 @@ class MyTestCase(unittest.TestCase):
         c = response.cookies
         requests.get(url=self.api_url, cookies=c)
         self.assertTrue(mongo.collection.find_one({"username": self.params['username'], "session" : {'$exists': False}}))
-
+        requests.post(url=mongo.api_url + 'remove', json=self.params)
 
 if __name__ == '__main__':
     unittest.main()

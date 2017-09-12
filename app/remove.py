@@ -4,16 +4,13 @@ from app import app
 from user.new_user import User
 
 """
-@api {post, get} /remove User deletion
+@api {post} /remove User deletion
 
-@apiName DelUser
+@apiName DelUser1
 @apiGroup User
 
-@apiParam {Number} id Users unique ID
 @apiParam {String} username Users name
 @apiParam {String} password Users password
-
-@apiSuccess {String} username Users name
 """
 
 
@@ -24,6 +21,14 @@ def remove_post():
     n = Correct().remove(data)
     return n
 
+"""
+@api {get} /remove User deletion
+
+@apiName DelUser2
+@apiGroup User
+
+@apiParam {String} cookie Users cookie(automatically)
+"""
 
 @app.route('/remove', methods=['GET'])
 def remove_get():

@@ -4,12 +4,12 @@ import mongo
 
 
 """
-@api {get} /logout User logout
+@api {get, post} /logout User logout
 
 @apiName LogoutUser
 @apiGroup User
 
-@apiParam {String} cookie Users cookie
+@apiParam {String} cookie Users cookie(automatically)
 """
 
 

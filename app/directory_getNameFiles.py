@@ -4,18 +4,16 @@ from director.correct import Correct
 from user.new_user import User
 
 """
-@api {post, get} /update User update
+@api {post} /get_dir List of files in the directory
 
-@apiName UpdateUser
-@apiGroup User
+@apiName GetFilesDir
+@apiGroup Directories
 
-@apiParam {Number} id Users unique ID
-@apiParam {String} username Users new name
-@apiParam {String} password Users new password
-
-@apiSuccess {String} username Users name
-@apiSuccess {String} password Users new password
+@apiParam {Number} cookie User cookies after authorization(automatically)
+@apiParam {String} [path] Path to the directory
+@apiParam {String} name The name of the directory
 """
+
 
 
 @app.route('/get_dir', methods=['POST'])

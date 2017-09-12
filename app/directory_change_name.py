@@ -5,17 +5,15 @@ from director.correct import Correct
 
 
 """
-@api {post, get} /update User update
+@api {post} /new_name_dir Change the name of the directory
 
-@apiName UpdateUser
-@apiGroup User
+@apiName ChangeDir
+@apiGroup Directories
 
-@apiParam {Number} id Users unique ID
-@apiParam {String} username Users new name
-@apiParam {String} password Users new password
-
-@apiSuccess {String} username Users name
-@apiSuccess {String} password Users new password
+@apiParam {Number} cookie User cookies after authorization(automatically)
+@apiParam {String} [path] The place where you want to change the directory name
+@apiParam {String} old_name The name of the directory you want to change
+@apiParam {String} new_name New directory name
 """
 
 

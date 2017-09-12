@@ -27,11 +27,11 @@ class Dev:
                     DB().update_files(params_file)
                     return 'A new file added.'
                 else:
-                    return 'A file with this name already exists.'
+                    return 'A file with this name already exists.', 403
             else:
-                return 'All devices are full.'
+                return 'All devices are full.', 413
         else:
-            return 'Specify the full path.'
+            return 'Specify the full path.', 404
 
     def remove_file(self, username, name, storage_path=''):
         path = username + '/' + storage_path
@@ -41,7 +41,7 @@ class Dev:
             DB().remove_file(file=file)
             return 'file delete'
         else:
-            return 'file does not exist.'
+            return 'file does not exist.', 404
 
     def update_file(self, username, user_path, storage_path=''):
         name = os.path.basename(user_path)
@@ -53,9 +53,9 @@ class Dev:
                 self.add_file(username=username, user_path=user_path, storage_path=storage_path)
                 return 'File update.'
             else:
-                return 'File does not exist.'
+                return 'File does not exist.', 404
         else:
-            return 'Specify the full path.'
+            return 'Specify the full path.', 404
 
     def get_file(self, username, user_path, name, storage_path=''):
         path = username + '/' + storage_path
@@ -65,5 +65,5 @@ class Dev:
             Exchange().get_file(user_path=user_path, storage_main_path=full_path)
             return 'File download.'
         else:
-            return 'A file with this name does not exists.'
+            return 'A file with this name does not exists.', 404
 

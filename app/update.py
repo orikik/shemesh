@@ -4,17 +4,14 @@ from app import app
 
 
 """
-@api {post, get} /update User update
+@api {post} /update User update
 
 @apiName UpdateUser
 @apiGroup User
 
-@apiParam {Number} id Users unique ID
-@apiParam {String} username Users new name
-@apiParam {String} password Users new password
-
-@apiSuccess {String} username Users name
-@apiSuccess {String} password Users new password
+@apiParam {String} cookie Users cookie(automatically)
+@apiParam {String} [username] Users new name
+@apiParam {String} [password] Users new password
 """
 
 

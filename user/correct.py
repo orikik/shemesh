@@ -9,7 +9,7 @@ class Correct:
             n = User().add_user(username=data['username'], password=data['password'])
             return n
         else:
-            return 'Incorrect data.'
+            return 'Incorrect data.', 400
 
     def login(self, data):
         key1 = 'username' in data
@@ -18,7 +18,7 @@ class Correct:
             n = User().login_user(username=data['username'], password=data['password'])
             return n
         else:
-            return 'Incorrect data.'
+            return 'Incorrect data.', 400
 
     def update(self, data, session):
         key1 = 'username' in data
@@ -33,7 +33,7 @@ class Correct:
             n = User().update_user(password=data['password'], session=session)
             return n
         else:
-            return 'Incorrect data.'
+            return 'Incorrect data.', 400
 
     def remove(self, data):
         key1 = 'username' in data
@@ -45,4 +45,4 @@ class Correct:
             else:
                 return 'Wrong password or user with such login does not exist.'
         else:
-            return 'Incorrect data.'
+            return 'Incorrect data.', 400

@@ -13,7 +13,7 @@ class MyTestCase(unittest.TestCase):
 
     def test_remove_post(self):
         requests.post(url=mongo.api_url + 'login', json=self.params)
-        f = requests.post(url=self.api_url, json=self.params)
+        requests.post(url=self.api_url, json=self.params)
         self.assertFalse(mongo.collection.find_one({"username": self.params['username']}))
 
     def test_remove_get(self):

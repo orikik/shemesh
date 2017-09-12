@@ -28,7 +28,7 @@ class Dir:
             else:
                 return 'This path does not exist.'
         else:
-            return 'A directory with this name already exists.'
+            return 'A directory with this name already exists.', 403
 
     def change_name_directory(self, new_name):
         if self.similar:
@@ -36,9 +36,9 @@ class Dir:
                 n = DB_dir().dir_update(new_name=new_name, full_path=self.full_path)
                 return n
             else:
-                return 'A directory with this name already exists.'
+                return 'A directory with this name already exists.', 403
         else:
-            return 'A directory named "' + self.name + '" does not exist.'
+            return 'A directory named "' + self.name + '" does not exist.', 404
 
     def remove_directory(self):
         dir = DB_dir().get_dir(username=self.username, name=self.name, full_path=self.full_path)
@@ -51,7 +51,7 @@ class Dir:
             n = DB_dir().remove_dir(dir)
             return n
         else:
-            return 'A directory named \"' + self.name + '\" does not exist.'
+            return 'A directory named \"' + self.name + '\" does not exist.', 404
 
     def getting_a_list_of_directory_files(self):
         if self.similar:
@@ -63,6 +63,6 @@ class Dir:
                 return n
 
         else:
-            return 'A directory named \"' + self.name + '\" does not exist.'
+            return 'A directory named \"' + self.name + '\" does not exist.', 404
 
 

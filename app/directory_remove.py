@@ -5,17 +5,14 @@ from director.correct import Correct
 
 
 """
-@api {post, get} /update User update
+@api {post} /remove_dir Removing directory
 
-@apiName UpdateUser
-@apiGroup User
+@apiName RemoveDir
+@apiGroup Directories
 
-@apiParam {Number} id Users unique ID
-@apiParam {String} username Users new name
-@apiParam {String} password Users new password
-
-@apiSuccess {String} username Users name
-@apiSuccess {String} password Users new password
+@apiParam {Number} cookie User cookies after authorization(automatically)
+@apiParam {String} [path] The place where you want to remove the directory
+@apiParam {String} name The name of the directory
 """
 
 

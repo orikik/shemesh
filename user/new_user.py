@@ -17,7 +17,7 @@ class User:
                    'Login: ' + username + ', ' + \
                    'Password: ' + password
         else:
-            return 'Login is used.'
+            return 'Login is used.', 403
 
     def login_user(self, username, password):
         if mongo.collection.find_one({"username": username, "password": password}):
@@ -27,7 +27,7 @@ class User:
             User().update_user_cookie(username=username, cookie=uuid_user)
             return resp
         else:
-            return 'Invalid username/password'
+            return 'Invalid username/password', 404
 
     def update_user(self, session, username='', password=''):
         if mongo.collection.find_one({"session": session}):
@@ -39,15 +39,17 @@ class User:
                     mongo.collection.update({'session': session}, {'$set': {"username": username}})
                     return 'New login: ' + username
                 else:
-                    return 'Login is used.'
+                    return 'Login is used.', 403
             else:
                 if not mongo.collection.find_one({"username": username}):
                     mongo.collection.update({'session': session},
                                             {'$set': {"username": username, "password": password}})
                     return 'New login: ' + username + ', ' + \
                            'New password: ' + password
+                else:
+                    return 'Login is used.', 403
         else:
-            return 'You are not loged in.'
+            return 'You are not loged in.', 401
 
     def exist_user(self, username, password):
         if mongo.collection.find_one({"username": username, "password": password}):
@@ -68,14 +70,14 @@ class User:
             mongo.collection.remove({"session": session})
             return 'The user was deleted.'
         else:
-            return 'You are not loged in.'
+            return 'You are not loged in.', 401
 
     def find_username(self, cookie):
         if mongo.collection.find_one({'session': cookie}):
             n = mongo.collection.find_one({'session': cookie})
             return n['_id']
         else:
-            return 'You are not authorized'
+            return 'You are not authorized', 401
 
     def update_user_cookie(self, username, cookie):
         mongo.collection.update({'username': username}, {"$set": {"session": cookie}})
