@@ -1,7 +1,7 @@
 from device.correct_data import Correct
 from flask import request
 from app import app
-from user.new_user import User
+from user.DB_user_func import User
 
 
 """
@@ -18,8 +18,13 @@ from user.new_user import User
 
 @app.route('/upload', methods=['POST'])
 def upload():
+    """Upload user file."""
     data = request.get_json()
     session = request.cookies.get('session')
-    username = str(User().find_username(session))
-    n = Correct().add(data=data, username=username)
-    return n
+    username = User().find_username(session)
+    if username:
+        n = Correct().add(data=data, username=str(username))
+        return n
+    else:
+        return 'You are not authorized', 401
+

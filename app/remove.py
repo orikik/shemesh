@@ -1,7 +1,7 @@
-from user.correct import Correct
+from user.correct_data import Correct
 from flask import request
 from app import app
-from user.new_user import User
+from user.DB_user_func import User
 
 """
 @api {post} /remove User deletion

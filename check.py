@@ -3,7 +3,7 @@ import os
 import shutil
 
 import mongo
-from director.dir_db import DB_dir
+from directories.dir_db import DB_dir
 
 
 #print(os.getcwd())

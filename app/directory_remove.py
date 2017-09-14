@@ -1,7 +1,7 @@
 from flask import request
 from app import app
-from user.new_user import User
-from director.correct import Correct
+from user.DB_user_func import User
+from directories.correct_data import Correct
 
 
 """
@@ -21,6 +21,11 @@ def remove_dir():
     """create new directory"""
     session = request.cookies.get('session')
     data = request.get_json()
-    username = str(User().find_username(session))
-    n = Correct().remove_dir(data=data, username=username)
-    return n
+    username = User().find_username(session)
+    if username:
+        n = Correct().remove_dir(data=data, username=str(username))
+        return n
+    else:
+        return 'You are not authorized', 401
+
+

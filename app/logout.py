@@ -1,7 +1,6 @@
 from flask import request, make_response
 from app import app
-import mongo
-
+from user.DB_user_func import User
 
 """
 @api {get, post} /logout User logout
@@ -15,8 +14,9 @@ import mongo
 
 @app.route('/logout', methods=['GET', 'POST'])
 def logout_get():
+    """log the user out."""
     session = request.cookies.get('session')
-    mongo.collection.update_one({'session': session}, {'$unset': {'session': 1}})
+    User().remove_user_cookie(session=session)
     resp = make_response("logout")
     resp.set_cookie('session', expires=0)
     return resp

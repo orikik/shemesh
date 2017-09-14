@@ -7,15 +7,14 @@ from device.DB_manager import DB
 
 class Dev:
     def add_file(self, username, user_path, storage_path=''):
-        size = os.path.getsize(user_path)
-        name = os.path.basename(user_path)
         dev_path = choose_device()
         dir_path = Path().create_path(dev_path=dev_path, username=username, path_to=storage_path)
         if os.path.isfile(user_path):
+            size = os.path.getsize(user_path)
+            name = os.path.basename(user_path)
             f = DB().dev_size_find(dev_path=dev_path)
             if f >= size:
                 if not DB().file_exist(username=username, dir_path=dir_path, name=name):
-                    Exchange().send_file(user_path=user_path, storage_main_path=dev_path + '/' + dir_path)
                     DB().update_device(size=size, dev_path=dev_path)
                     params_file = {
                         'username': username,
@@ -25,7 +24,8 @@ class Dev:
                         'name': name
                     }
                     DB().update_files(params_file)
-                    return 'A new file added.'
+                    f = Exchange().send_file(user_path=user_path, storage_main_path=dev_path + '/' + dir_path)
+                    return f
                 else:
                     return 'A file with this name already exists.', 403
             else:
@@ -34,7 +34,10 @@ class Dev:
             return 'Specify the full path.', 404
 
     def remove_file(self, username, name, storage_path=''):
-        path = username + '/' + storage_path
+        if storage_path == '':
+            path = username
+        else:
+            path = username + '/' + storage_path
         file = DB().get_file(username=username, name=name, dir_path=path)
         if file:
             Exchange().remove_file(file['device'] + '/' + file['path'] + '/' +file['name'])

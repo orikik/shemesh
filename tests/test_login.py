@@ -12,7 +12,7 @@ class MyTestCase(unittest.TestCase):
 
 
     def test_login(self):
-        requests.post(url=mongo.api_url + 'register', json=self.params)
+        requests.post(url=mongo.api_url + 'registration', json=self.params)
         f = requests.post(url= self.api_url, json=self.params)
         self.assertTrue(mongo.collection.find_one({"username": self.params['username'], "session": f.cookies['session']}))
         requests.post(url=mongo.api_url + 'remove',json=self.params)

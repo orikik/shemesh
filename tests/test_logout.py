@@ -8,7 +8,7 @@ class MyTestCase(unittest.TestCase):
         'username': 'testing',
         'password': '1234'
     }
-    requests.post(url=mongo.api_url + 'register', json=params)
+    requests.post(url=mongo.api_url + 'registration', json=params)
     api_url = mongo.api_url + 'logout'
 
     def test_logout(self):

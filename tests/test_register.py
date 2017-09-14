@@ -3,6 +3,7 @@ import requests
 import mongo
 from app import app
 
+
 class MyTestCase(unittest.TestCase):
     params = {
         'username': 'testing',
@@ -18,7 +19,7 @@ class MyTestCase(unittest.TestCase):
         'hellboy': 'yeah'
     }
     api_url = mongo.api_url + 'registration'
-    app.run(debug=True)
+
     def test_add_first(self):
         requests.post(url = self.api_url , json = self.params)
         self.assertTrue(mongo.collection.find_one({"username": self.params['username']}))

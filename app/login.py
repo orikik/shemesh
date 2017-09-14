@@ -1,7 +1,8 @@
-from flask import request, make_response
+from flask import request
 from app import app
-from user.correct import Correct
-import uuid
+from user.DB_user_func import User
+from user.correct_data import Correct
+
 
 """
 @api {post} /login User login
@@ -20,7 +21,12 @@ import uuid
 def login():
     """log the user in."""
     data = request.get_json()
-    n = Correct().login(data)
+    session = request.cookies.get('session')
+    if session:
+        User().remove_user_cookie(session=session)
+        n = Correct().login(data)
+    else:
+        n = Correct().login(data)
     return n
 
 

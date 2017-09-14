@@ -1,5 +1,5 @@
 from flask import request
-from user.correct import Correct
+from user.correct_data import Correct
 from app import app
 
 
@@ -17,7 +17,7 @@ from app import app
 
 @app.route('/update', methods=['POST'])
 def update():
-    """update"""
+    """Updating user data."""
     session = request.cookies.get('session')
     data = request.get_json()
     n = Correct().update(data, session)
