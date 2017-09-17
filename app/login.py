@@ -8,7 +8,7 @@ from user.correct_data import Correct
 @api {post} /login User login
 
 @apiName LoginUser
-@apiGroup User
+@apiGroup 1. User
 
 @apiParam {String} username Users name
 @apiParam {String} password Users password

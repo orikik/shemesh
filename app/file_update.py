@@ -8,7 +8,7 @@ from user.DB_user_func import User
 @api {post} /file_update  Update the file
 
 @apiName UpdateFile
-@apiGroup Files
+@apiGroup 3. Files
 
 @apiParam {Number} cookie User cookies after authorization(automatically)
 @apiParam {String} [storage_path] The place from where you want to get the file

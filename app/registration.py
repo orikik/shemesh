@@ -6,7 +6,7 @@ from app import app
 @api {post} /registration New User Registration
 
 @apiName GetUser
-@apiGroup User
+@apiGroup 1. User
 
 @apiParam {String} username Users name
 @apiParam {String} password Users password

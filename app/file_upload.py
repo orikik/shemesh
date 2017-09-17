@@ -8,7 +8,7 @@ from user.DB_user_func import User
 @api {post} /upload  Upload the file
 
 @apiName UploadFile
-@apiGroup Files
+@apiGroup 3. Files
 
 @apiParam {Number} cookie User cookies after authorization(automatically)
 @apiParam {String} [storage_path] A place where to save the file

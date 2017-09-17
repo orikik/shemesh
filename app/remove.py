@@ -7,7 +7,7 @@ from user.DB_user_func import User
 @api {post} /remove User deletion
 
 @apiName DelUser1
-@apiGroup User
+@apiGroup 1. User
 
 @apiParam {String} username Users name
 @apiParam {String} password Users password
@@ -25,7 +25,7 @@ def remove_post():
 @api {get} /remove User deletion
 
 @apiName DelUser2
-@apiGroup User
+@apiGroup 1. User
 
 @apiParam {String} cookie Users cookie(automatically)
 """

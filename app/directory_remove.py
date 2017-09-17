@@ -8,7 +8,7 @@ from directories.correct_data import Correct
 @api {post} /remove_dir Removing directory
 
 @apiName RemoveDir
-@apiGroup Directories
+@apiGroup 2. Directories
 
 @apiParam {Number} cookie User cookies after authorization(automatically)
 @apiParam {String} [path] The place where you want to remove the directory

@@ -3,6 +3,7 @@ import mongo
 import requests
 
 
+
 class MyTestCase(unittest.TestCase):
     params = {
         'username': 'testing',
@@ -20,11 +21,11 @@ class MyTestCase(unittest.TestCase):
         'new_name': 'name222'
     }
     params_file0 = {
-        'my_path': 'C:/фотки/9.txt',
+        'my_path': path1,
         'storage_path': 'name0'
     }
     params_file1 = {
-        'my_path': 'C:/фотки/11.txt',
+        'my_path': 'C:/work/shemesh/tests/test.txt',
         'storage_path': 'name0/name1'
     }
     requests.post(url=mongo.api_url + 'registration', json=params)

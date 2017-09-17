@@ -7,7 +7,7 @@ from user.DB_user_func import User
 @api {post} /get_dir List of files in the directory
 
 @apiName GetFilesDir
-@apiGroup Directories
+@apiGroup 2. Directories
 
 @apiParam {Number} cookie User cookies after authorization(automatically)
 @apiParam {String} [path] Path to the directory

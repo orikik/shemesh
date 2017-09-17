@@ -35,11 +35,11 @@ class MyTestCase(unittest.TestCase):
             'name': 'name0'
         }
         params_file0 = {
-            'my_path': 'C:/фотки/9.txt',
+            'my_path': 'C:/work/shemesh/tests/test1.txt',
             'storage_path': 'name0'
         }
         params_file1 = {
-            'my_path': 'C:/фотки/11.txt',
+            'my_path': 'C:/work/shemesh/tests/test1.txt',
         }
         requests.post(url=mongo.api_url + 'registration', json=params)
         session = requests.Session()

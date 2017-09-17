@@ -8,7 +8,7 @@ from directories.correct_data import Correct
 @api {post} /new_name_dir Change the name of the directory
 
 @apiName ChangeDir
-@apiGroup Directories
+@apiGroup 2. Directories
 
 @apiParam {Number} cookie User cookies after authorization(automatically)
 @apiParam {String} [path] The place where you want to change the directory name

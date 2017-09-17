@@ -35,10 +35,8 @@ class DB:
         n = m['free space']
         return n
 
-
     def update_device(self, dev_path, size):
         mongo.dev_collection.update({'path': dev_path}, {'$inc': {'used space': size, 'free space': -size}})
-
 
     def update_files(self, params_file):
         mongo.file_collection.save(params_file)

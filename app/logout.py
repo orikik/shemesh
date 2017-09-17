@@ -6,7 +6,7 @@ from user.DB_user_func import User
 @api {get, post} /logout User logout
 
 @apiName LogoutUser
-@apiGroup User
+@apiGroup 1. User
 
 @apiParam {String} cookie Users cookie(automatically)
 """

@@ -13,11 +13,11 @@ class MyTestCase(unittest.TestCase):
         'name': 'name0'
     }
     params_file0 = {
-        'my_path': 'C:/фотки/9.txt',
+        'my_path': 'C:/work/shemesh/tests/test.txt',
         'storage_path': 'name0'
     }
     params_file1 = {
-        'my_path': 'C:/фотки/11.txt',
+        'my_path': 'C:/work/shemesh/tests/test.txt',
     }
     requests.post(url=mongo.api_url + 'registration', json=params)
     session = requests.Session()
@@ -32,8 +32,8 @@ class MyTestCase(unittest.TestCase):
         username = mongo.collection.find_one({'username': self.params['username']})
         id = str(username['_id'])
         self.assertTrue(mongo.file_collection.find_one({'path': id + '/' + self.params_file0['storage_path'],
-                                                        'name': '9.txt'}))
-        self.assertTrue(mongo.file_collection.find_one({'path': id, 'name': '11.txt'}))
+                                                        'name': 'test.txt'}))
+        self.assertTrue(mongo.file_collection.find_one({'path': id, 'name': 'test.txt'}))
         requests.post(url=mongo.api_url + 'remove', json=self.params)
 
 

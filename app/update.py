@@ -7,7 +7,7 @@ from app import app
 @api {post} /update User update
 
 @apiName UpdateUser
-@apiGroup User
+@apiGroup 1. User
 
 @apiParam {String} cookie Users cookie(automatically)
 @apiParam {String} [username] Users new name

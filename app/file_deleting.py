@@ -8,7 +8,7 @@ from user.DB_user_func import User
 @api {post} /remove_file Delete the file
 
 @apiName RemoveFile
-@apiGroup Files
+@apiGroup 3. Files
 
 @apiParam {Number} cookie User cookies after authorization(automatically)
 @apiParam {String} [storage_path] The place where you want to delete the file

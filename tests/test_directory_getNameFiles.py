@@ -13,26 +13,26 @@ class MyTestCase(unittest.TestCase):
         'name': 'name0'
     }
     params_file0 = {
-        'my_path': 'C:/фотки/9.txt',
+        'my_path': 'C:/work/shemesh/tests/test.txt',
         'storage_path': 'name0'
     }
     params_file1 = {
-        'my_path': 'C:/фотки/11.txt',
+        'my_path': 'C:/work/shemesh/tests/test1.txt',
         'storage_path': 'name0'
     }
     params_file2 = {
-        'my_path': 'C:/фотки/9.txt',
+        'my_path': 'C:/work/shemesh/tests/test.txt',
     }
     params_file3 = {
-        'my_path': 'C:/фотки/11.txt',
+        'my_path': 'C:/work/shemesh/tests/test1.txt',
     }
     params_get0 = {
     }
     params_get1 = {
         "name": 'name0'
     }
-    v = ['9.txt', '11.txt']
-    x = ['11.txt', '9.txt']
+    v = ['test.txt', 'test1.txt']
+    x = ['test1.txt', 'test.txt']
 
     requests.post(url=mongo.api_url + 'registration', json=params)
     session = requests.Session()
