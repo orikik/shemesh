@@ -1,6 +1,6 @@
 # shemesh
 
-To run the program, you need to install the MongoDB and then run the mongod.exe (following the instructions of the producer).
+To run the program, you need to install the MongoDB(Community server) and then run the mongod.exe (following the instructions of the producer).
 
 In the devices.py file, specify the folders in which you want to store the files.
 Then run this file.
